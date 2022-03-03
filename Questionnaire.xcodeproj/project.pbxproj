@@ -8,17 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		500E7E1527D11BD60034D8A1 /* QuestionnaireApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E1427D11BD60034D8A1 /* QuestionnaireApp.swift */; };
-		500E7E1727D11BD60034D8A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E1627D11BD60034D8A1 /* ContentView.swift */; };
+		500E7E1727D11BD60034D8A1 /* BackgroundQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E1627D11BD60034D8A1 /* BackgroundQuestionsView.swift */; };
 		500E7E1927D11BD70034D8A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 500E7E1827D11BD70034D8A1 /* Assets.xcassets */; };
 		500E7E1C27D11BD70034D8A1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 500E7E1B27D11BD70034D8A1 /* Preview Assets.xcassets */; };
+		500E7E2327D11CA30034D8A1 /* PANAS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E2227D11CA30034D8A1 /* PANAS.swift */; };
+		500E7E2527D11CB40034D8A1 /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E2427D11CB40034D8A1 /* Questionnaire.swift */; };
+		500E7E2827D138810034D8A1 /* QuestionnaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E2727D138810034D8A1 /* QuestionnaireViewController.swift */; };
+		500E7E2C27D140800034D8A1 /* PANASView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E2B27D140800034D8A1 /* PANASView.swift */; };
+		500E7E2E27D176090034D8A1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E2D27D176090034D8A1 /* HomeView.swift */; };
+		500E7E3027D17A470034D8A1 /* ConcludingQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E2F27D17A470034D8A1 /* ConcludingQuestionsView.swift */; };
+		500E7E3227D17FF10034D8A1 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E3127D17FF10034D8A1 /* ViewModifiers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		500E7E1127D11BD60034D8A1 /* Questionnaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Questionnaire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		500E7E1427D11BD60034D8A1 /* QuestionnaireApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireApp.swift; sourceTree = "<group>"; };
-		500E7E1627D11BD60034D8A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		500E7E1627D11BD60034D8A1 /* BackgroundQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundQuestionsView.swift; sourceTree = "<group>"; };
 		500E7E1827D11BD70034D8A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		500E7E1B27D11BD70034D8A1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		500E7E2227D11CA30034D8A1 /* PANAS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PANAS.swift; sourceTree = "<group>"; };
+		500E7E2427D11CB40034D8A1 /* Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
+		500E7E2727D138810034D8A1 /* QuestionnaireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireViewController.swift; sourceTree = "<group>"; };
+		500E7E2B27D140800034D8A1 /* PANASView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PANASView.swift; sourceTree = "<group>"; };
+		500E7E2D27D176090034D8A1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		500E7E2F27D17A470034D8A1 /* ConcludingQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcludingQuestionsView.swift; sourceTree = "<group>"; };
+		500E7E3127D17FF10034D8A1 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +66,13 @@
 			isa = PBXGroup;
 			children = (
 				500E7E1427D11BD60034D8A1 /* QuestionnaireApp.swift */,
-				500E7E1627D11BD60034D8A1 /* ContentView.swift */,
+				500E7E1627D11BD60034D8A1 /* BackgroundQuestionsView.swift */,
+				500E7E2F27D17A470034D8A1 /* ConcludingQuestionsView.swift */,
+				500E7E2B27D140800034D8A1 /* PANASView.swift */,
+				500E7E2727D138810034D8A1 /* QuestionnaireViewController.swift */,
+				500E7E2D27D176090034D8A1 /* HomeView.swift */,
+				500E7E3127D17FF10034D8A1 /* ViewModifiers.swift */,
+				500E7E2627D11CBB0034D8A1 /* Model */,
 				500E7E1827D11BD70034D8A1 /* Assets.xcassets */,
 				500E7E1A27D11BD70034D8A1 /* Preview Content */,
 			);
@@ -65,6 +85,15 @@
 				500E7E1B27D11BD70034D8A1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		500E7E2627D11CBB0034D8A1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				500E7E2227D11CA30034D8A1 /* PANAS.swift */,
+				500E7E2427D11CB40034D8A1 /* Questionnaire.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +166,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				500E7E1727D11BD60034D8A1 /* ContentView.swift in Sources */,
+				500E7E3227D17FF10034D8A1 /* ViewModifiers.swift in Sources */,
+				500E7E2327D11CA30034D8A1 /* PANAS.swift in Sources */,
+				500E7E2E27D176090034D8A1 /* HomeView.swift in Sources */,
+				500E7E2827D138810034D8A1 /* QuestionnaireViewController.swift in Sources */,
+				500E7E2527D11CB40034D8A1 /* Questionnaire.swift in Sources */,
+				500E7E1727D11BD60034D8A1 /* BackgroundQuestionsView.swift in Sources */,
+				500E7E3027D17A470034D8A1 /* ConcludingQuestionsView.swift in Sources */,
+				500E7E2C27D140800034D8A1 /* PANASView.swift in Sources */,
 				500E7E1527D11BD60034D8A1 /* QuestionnaireApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,7 +232,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -251,7 +287,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
