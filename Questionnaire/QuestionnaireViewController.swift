@@ -6,49 +6,79 @@
 //
 
 import Foundation
+import SwiftUI
+import UniformTypeIdentifiers
 
-class QuestionnaireViewController: ObservableObject {
-    var questionnaireModel = Questionnaire()
+extension UTType {
+    static let amq = UTType(exportedAs: "ninja.xquan.amq")
+}
+
+
+class QuestionnaireViewController: ReferenceFileDocument {
+    static var readableContentTypes = [UTType.amq]
+    static var writeableContentTypes = [UTType.amq]
     
-    @Published var bq1Answer: BQ1Answer? 
-    @Published var bq2Answer: BQ2Answer?
-    @Published var bq3Answer: BQ3Answer?
-    @Published var cq1Answer: ScaledResponse?
-    @Published var cq2Answer: CQ2Answer?
-    @Published var cq3Answer: String = ""
-    
-    @Published var mood1: PanasQuestionnaire = PanasQuestionnaire(audioStimuli: .noiseCancellation)
-    @Published var mood2: PanasQuestionnaire = PanasQuestionnaire(audioStimuli: .ncPlusMusic)
-    @Published var mood3: PanasQuestionnaire = PanasQuestionnaire(audioStimuli: .ncPlusAugmentation)
-    @Published var mood4: PanasQuestionnaire = PanasQuestionnaire(audioStimuli: .ncPlusMusicPlusAugmentation)
-    
-    func answerBQ1(with answer: BQ1Answer) {
-        bq1Answer = answer
-        questionnaireModel.bq1Answer = answer
+    // MARK: - ReferenceFileDocument
+    required init(configuration: ReadConfiguration) throws {
+        if let data = configuration.file.regularFileContents {
+            questionnaireModel = try Questionnaire(json: data)
+        } else {
+            throw CocoaError(.fileReadCorruptFile)
+        }
     }
     
-    func answerBQ2(with answer: BQ2Answer) {
-        bq2Answer = answer
-        questionnaireModel.bq2Answer = answer
+    func snapshot(contentType: UTType) throws -> Data {
+        try questionnaireModel.json()
     }
     
-    func answerBQ3(with answer: BQ3Answer) {
-        bq3Answer = answer
-        questionnaireModel.bq3Answer = answer
+    func fileWrapper(snapshot: Data, configuration: WriteConfiguration) throws -> FileWrapper {
+        FileWrapper(regularFileWithContents: snapshot)
     }
     
-    func answerCQ1(with answer: ScaledResponse) {
-        cq1Answer = answer
-        questionnaireModel.cq1Answer = answer
+    
+    @Published var questionnaireModel: Questionnaire
+    
+//    init(id: Int) {
+//        self.questionnaireModel = Questionnaire(id: id)
+//    }
+    init() {
+        self.questionnaireModel = Questionnaire()
     }
     
-    func answerCQ2(with answer: CQ2Answer) {
-        cq2Answer = answer
-        questionnaireModel.cq2Answer = answer
+    func answerBQ1(with answer: BQ1Answer, undoManager: UndoManager?) {
+        undoablyPerform(operation: "Answer BQ1", with: undoManager) {
+            questionnaireModel.bq1Answer = answer
+        }
     }
     
-    func answerCQ3(with answer: String) {
-        questionnaireModel.cq3Answer = answer
+    func answerBQ2(with answer: BQ2Answer, undoManager: UndoManager?) {
+        undoablyPerform(operation: "Answer BQ2", with: undoManager) {
+            questionnaireModel.bq2Answer = answer
+        }
+    }
+    
+    func answerBQ3(with answer: BQ3Answer, undoManager: UndoManager?) {
+        undoablyPerform(operation: "Answer BQ3", with: undoManager) {
+            questionnaireModel.bq3Answer = answer
+        }
+    }
+    
+    func answerCQ1(with answer: ScaledResponse, undoManager: UndoManager?) {
+        undoablyPerform(operation: "Answer CQ1",with: undoManager) {
+            questionnaireModel.cq1Answer = answer
+        }
+    }
+    
+    func answerCQ2(with answer: CQ2Answer, undoManager: UndoManager?) {
+        undoablyPerform(operation: "Answer CQ2", with: undoManager) {
+            questionnaireModel.cq2Answer = answer
+        }
+    }
+    
+    func answerCQ3(with answer: String, undoManager: UndoManager?) {
+        undoablyPerform(operation: "Answer CQ3", with: undoManager) {
+            questionnaireModel.cq3Answer = answer
+        }
     }
     
     func getMood(audioStimuli: AudioStimuli, index: Int) -> Bool {
@@ -58,13 +88,17 @@ class QuestionnaireViewController: ObservableObject {
         
         switch audioStimuli {
         case .noiseCancellation:
-            moods = mood1
+            moods = questionnaireModel.mood1
+            
         case .ncPlusMusic:
-            moods = mood2
+            moods = questionnaireModel.mood2
+            
         case .ncPlusAugmentation:
-            moods = mood3
+            moods = questionnaireModel.mood3
+            
         case .ncPlusMusicPlusAugmentation:
-            moods = mood4
+            moods = questionnaireModel.mood4
+            
         }
         
         switch questionRow {
@@ -115,7 +149,7 @@ class QuestionnaireViewController: ObservableObject {
         return false
     }
     
-    func setMood(audioStimuli: AudioStimuli, index: Int) {
+    func setMood(audioStimuli: AudioStimuli, index: Int, undoManager: UndoManager?) {
         let questionRow = index / 6
         let questionResponse = index % 6
         
@@ -123,13 +157,17 @@ class QuestionnaireViewController: ObservableObject {
         
         switch audioStimuli {
         case .noiseCancellation:
-            moodToFill = mood1
+            moodToFill = questionnaireModel.mood1
+            
         case .ncPlusMusic:
-            moodToFill = mood2
+            moodToFill = questionnaireModel.mood2
+            
         case .ncPlusAugmentation:
-            moodToFill = mood3
+            moodToFill = questionnaireModel.mood3
+            
         case .ncPlusMusicPlusAugmentation:
-            moodToFill = mood4
+            moodToFill = questionnaireModel.mood4
+            
         }
         
         switch questionRow {
@@ -180,25 +218,35 @@ class QuestionnaireViewController: ObservableObject {
         print("Question: \(questionRow)")
         print("Response: \(questionResponse)")
         
-        switch audioStimuli {
-        case .noiseCancellation:
-            self.mood1 = moodToFill
-            questionnaireModel.mood1 = self.mood1
-            
-        case .ncPlusMusic:
-            self.mood2 = moodToFill
-            questionnaireModel.mood2 = self.mood2
-            
-        case .ncPlusAugmentation:
-            self.mood3 = moodToFill
-            questionnaireModel.mood3 = self.mood3
-            
-        case .ncPlusMusicPlusAugmentation:
-            self.mood4 = moodToFill
-            questionnaireModel.mood4 = self.mood4
+        undoablyPerform(operation: "Set Mood", with: undoManager) {
+            switch audioStimuli {
+            case .noiseCancellation:
+                questionnaireModel.mood1 = moodToFill
+                
+            case .ncPlusMusic:
+                questionnaireModel.mood2 = moodToFill
+                
+            case .ncPlusAugmentation:
+                questionnaireModel.mood3 = moodToFill
+                
+            case .ncPlusMusicPlusAugmentation:
+                questionnaireModel.mood4 = moodToFill
+            }
         }
     }
     
-    
+    // MARK: - Undo
+    private func undoablyPerform(operation: String, with undoManager: UndoManager? = nil, doit: () -> Void) {
+        let prevState = questionnaireModel
+        doit()
+        print("Undoably Performed \(operation)")
+        print("UndoManager == nil?:  \(undoManager == nil)")
+        undoManager?.registerUndo(withTarget: self) { myself in
+            myself.undoablyPerform(operation: operation, with: undoManager) {
+                myself.questionnaireModel = prevState
+            }
+        }
+        undoManager?.setActionName(operation)
+    }
     
 }

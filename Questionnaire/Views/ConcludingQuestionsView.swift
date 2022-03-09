@@ -10,6 +10,7 @@ import SwiftUI
 struct ConcludingQuestionsView: View {
     
     @EnvironmentObject var questionnaireVC: QuestionnaireViewController
+    @Environment(\.undoManager) var undoManager
     
     var body: some View {
         ScrollView {
@@ -32,12 +33,12 @@ struct ConcludingQuestionsView: View {
                             VStack {
                                 Text(response.string)
                                 Button {
-                                    questionnaireVC.answerCQ1(with: response)
+                                    questionnaireVC.answerCQ1(with: response, undoManager: undoManager)
                                 } label: {
                                     Image(systemName: "checkmark.circle.fill")
                                         .resizable()
                                         .frame(width: 35, height: 35)
-                                        .opacity(response == questionnaireVC.cq1Answer ? 1 : 0)
+                                        .opacity(response == questionnaireVC.questionnaireModel.cq1Answer ? 1 : 0)
                                         .padding(.vertical, 20)
                                         .horizontalCentered()
                                 }
@@ -60,7 +61,7 @@ struct ConcludingQuestionsView: View {
                     
                     HStack {
                         Button(action: {
-                            questionnaireVC.answerCQ2(with: answer)
+                            questionnaireVC.answerCQ2(with: answer, undoManager: undoManager)
                         }) {
                             HStack {
                                 Text(answer.rawValue)
@@ -74,7 +75,7 @@ struct ConcludingQuestionsView: View {
                             .resizable()
                             .frame(width: 30, height: 30)
                             .padding(.horizontal, 20)
-                            .opacity(answer == questionnaireVC.cq2Answer ? 1 : 0)
+                            .opacity(answer == questionnaireVC.questionnaireModel.cq2Answer ? 1 : 0)
                         
                         
                     }
@@ -92,7 +93,7 @@ struct ConcludingQuestionsView: View {
                     .font(.headline)
                     .padding()
             
-                TextEditor(text: $questionnaireVC.cq3Answer)
+                TextEditor(text: $questionnaireVC.questionnaireModel.cq3Answer)
                     .frame(minHeight: 200)
                     .shadow(radius: 1)
                     .padding()

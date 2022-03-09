@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BackgroundQuestionsView: View {
     @EnvironmentObject var questionnaireVC: QuestionnaireViewController
+    @Environment(\.undoManager) var undoManager
     
     var body: some View {
         ScrollView {
@@ -27,7 +28,7 @@ struct BackgroundQuestionsView: View {
                 ForEach(BQ1Answer.allCases, id: \.self) { answer in
                     HStack {
                         Button(action: {
-                            questionnaireVC.answerBQ1(with: answer)
+                            questionnaireVC.answerBQ1(with: answer, undoManager: undoManager)
                         }) {
                             HStack {
                                 Text(answer.rawValue)
@@ -38,7 +39,7 @@ struct BackgroundQuestionsView: View {
                         Image(systemName: "checkmark.circle.fill")
                             .resizable()
                             .frame(width: 30, height: 30)
-                            .opacity(answer == questionnaireVC.bq1Answer ? 1 : 0)
+                            .opacity(answer == questionnaireVC.questionnaireModel.bq1Answer ? 1 : 0)
                     }
                     .padding(.vertical, 5)
                     Divider()
@@ -57,7 +58,7 @@ struct BackgroundQuestionsView: View {
                 ForEach(BQ2Answer.allCases, id: \.self) { answer in
                     HStack {
                         Button(action: {
-                            questionnaireVC.answerBQ2(with: answer)
+                            questionnaireVC.answerBQ2(with: answer, undoManager: undoManager)
                         }) {
                             HStack {
                                 Text(answer.rawValue)
@@ -70,7 +71,7 @@ struct BackgroundQuestionsView: View {
                         Image(systemName: "checkmark.circle.fill")
                             .resizable()
                             .frame(width: 30, height: 30)
-                            .opacity(answer == questionnaireVC.bq2Answer ? 1 : 0)
+                            .opacity(answer == questionnaireVC.questionnaireModel.bq2Answer ? 1 : 0)
                     }
                     .padding(.vertical, 5)
                     Divider()
@@ -89,7 +90,7 @@ struct BackgroundQuestionsView: View {
                 ForEach(BQ3Answer.allCases, id: \.self) { answer in
                     HStack {
                         Button(action: {
-                            questionnaireVC.answerBQ3(with: answer)
+                            questionnaireVC.answerBQ3(with: answer, undoManager: undoManager)
                         }) {
                             HStack {
                                 Text(answer.rawValue)
@@ -102,7 +103,7 @@ struct BackgroundQuestionsView: View {
                         Image(systemName: "checkmark.circle.fill")
                             .resizable()
                             .frame(width: 30, height: 30)
-                            .opacity(answer == questionnaireVC.bq3Answer ? 1 : 0)
+                            .opacity(answer == questionnaireVC.questionnaireModel.bq3Answer ? 1 : 0)
                     }
                     .padding(.vertical, 5)
                     Divider()
@@ -113,12 +114,5 @@ struct BackgroundQuestionsView: View {
             }
         }
         .padding(.horizontal, 50)
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        BackgroundQuestionsView()
-            .previewDevice("iPad Pro (12.9-inch)")
     }
 }

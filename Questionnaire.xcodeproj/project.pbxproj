@@ -15,9 +15,12 @@
 		500E7E2527D11CB40034D8A1 /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E2427D11CB40034D8A1 /* Questionnaire.swift */; };
 		500E7E2827D138810034D8A1 /* QuestionnaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E2727D138810034D8A1 /* QuestionnaireViewController.swift */; };
 		500E7E2C27D140800034D8A1 /* PANASView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E2B27D140800034D8A1 /* PANASView.swift */; };
-		500E7E2E27D176090034D8A1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E2D27D176090034D8A1 /* HomeView.swift */; };
+		500E7E2E27D176090034D8A1 /* QuestionnaireHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E2D27D176090034D8A1 /* QuestionnaireHomeView.swift */; };
 		500E7E3027D17A470034D8A1 /* ConcludingQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E2F27D17A470034D8A1 /* ConcludingQuestionsView.swift */; };
 		500E7E3227D17FF10034D8A1 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E7E3127D17FF10034D8A1 /* ViewModifiers.swift */; };
+		50DA0B1827D2F8A300DEF05B /* FileManager+DocDir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA0B1727D2F8A300DEF05B /* FileManager+DocDir.swift */; };
+		50F5EECB27D50DE1008F3375 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5EECA27D50DE1008F3375 /* StartView.swift */; };
+		50F5EECD27D5144B008F3375 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5EECC27D5144B008F3375 /* StartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,9 +33,13 @@
 		500E7E2427D11CB40034D8A1 /* Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
 		500E7E2727D138810034D8A1 /* QuestionnaireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireViewController.swift; sourceTree = "<group>"; };
 		500E7E2B27D140800034D8A1 /* PANASView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PANASView.swift; sourceTree = "<group>"; };
-		500E7E2D27D176090034D8A1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		500E7E2D27D176090034D8A1 /* QuestionnaireHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireHomeView.swift; sourceTree = "<group>"; };
 		500E7E2F27D17A470034D8A1 /* ConcludingQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcludingQuestionsView.swift; sourceTree = "<group>"; };
 		500E7E3127D17FF10034D8A1 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
+		50DA0B1727D2F8A300DEF05B /* FileManager+DocDir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+DocDir.swift"; sourceTree = "<group>"; };
+		50F5EECA27D50DE1008F3375 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		50F5EECC27D5144B008F3375 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		50F5EECE27D7C668008F3375 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,14 +72,13 @@
 		500E7E1327D11BD60034D8A1 /* Questionnaire */ = {
 			isa = PBXGroup;
 			children = (
+				50F5EECE27D7C668008F3375 /* Info.plist */,
 				500E7E1427D11BD60034D8A1 /* QuestionnaireApp.swift */,
-				500E7E1627D11BD60034D8A1 /* BackgroundQuestionsView.swift */,
-				500E7E2F27D17A470034D8A1 /* ConcludingQuestionsView.swift */,
-				500E7E2B27D140800034D8A1 /* PANASView.swift */,
 				500E7E2727D138810034D8A1 /* QuestionnaireViewController.swift */,
-				500E7E2D27D176090034D8A1 /* HomeView.swift */,
-				500E7E3127D17FF10034D8A1 /* ViewModifiers.swift */,
+				50F5EECC27D5144B008F3375 /* StartViewController.swift */,
+				50F5EEC827D2FA1F008F3375 /* Views */,
 				500E7E2627D11CBB0034D8A1 /* Model */,
+				50F5EEC927D2FA31008F3375 /* Helpers */,
 				500E7E1827D11BD70034D8A1 /* Assets.xcassets */,
 				500E7E1A27D11BD70034D8A1 /* Preview Content */,
 			);
@@ -90,10 +96,31 @@
 		500E7E2627D11CBB0034D8A1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				500E7E2227D11CA30034D8A1 /* PANAS.swift */,
 				500E7E2427D11CB40034D8A1 /* Questionnaire.swift */,
+				500E7E2227D11CA30034D8A1 /* PANAS.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		50F5EEC827D2FA1F008F3375 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				50F5EECA27D50DE1008F3375 /* StartView.swift */,
+				500E7E2D27D176090034D8A1 /* QuestionnaireHomeView.swift */,
+				500E7E1627D11BD60034D8A1 /* BackgroundQuestionsView.swift */,
+				500E7E2B27D140800034D8A1 /* PANASView.swift */,
+				500E7E2F27D17A470034D8A1 /* ConcludingQuestionsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		50F5EEC927D2FA31008F3375 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				50DA0B1727D2F8A300DEF05B /* FileManager+DocDir.swift */,
+				500E7E3127D17FF10034D8A1 /* ViewModifiers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,13 +194,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				500E7E3227D17FF10034D8A1 /* ViewModifiers.swift in Sources */,
+				50F5EECB27D50DE1008F3375 /* StartView.swift in Sources */,
 				500E7E2327D11CA30034D8A1 /* PANAS.swift in Sources */,
-				500E7E2E27D176090034D8A1 /* HomeView.swift in Sources */,
+				500E7E2E27D176090034D8A1 /* QuestionnaireHomeView.swift in Sources */,
 				500E7E2827D138810034D8A1 /* QuestionnaireViewController.swift in Sources */,
+				50F5EECD27D5144B008F3375 /* StartViewController.swift in Sources */,
 				500E7E2527D11CB40034D8A1 /* Questionnaire.swift in Sources */,
 				500E7E1727D11BD60034D8A1 /* BackgroundQuestionsView.swift in Sources */,
 				500E7E3027D17A470034D8A1 /* ConcludingQuestionsView.swift in Sources */,
 				500E7E2C27D140800034D8A1 /* PANASView.swift in Sources */,
+				50DA0B1827D2F8A300DEF05B /* FileManager+DocDir.swift in Sources */,
 				500E7E1527D11BD60034D8A1 /* QuestionnaireApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,11 +338,13 @@
 				DEVELOPMENT_TEAM = XDPTRV2722;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Questionnaire/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -337,11 +369,13 @@
 				DEVELOPMENT_TEAM = XDPTRV2722;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Questionnaire/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

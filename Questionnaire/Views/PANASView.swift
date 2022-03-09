@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PANASView: View {
     @EnvironmentObject var questionnaireVC: QuestionnaireViewController
+    @Environment(\.undoManager) var undoManager
     var audioStimuli: AudioStimuli
     
     var body: some View {
@@ -100,7 +101,7 @@ struct PANASView: View {
                         
                     default:
                         Button {
-                            questionnaireVC.setMood(audioStimuli:audioStimuli, index: count)
+                            questionnaireVC.setMood(audioStimuli:audioStimuli, index: count, undoManager: undoManager)
                         } label: {
                             VStack {
                                 Spacer()
@@ -119,14 +120,8 @@ struct PANASView: View {
             .padding(.bottom)
         }
         .multilineTextAlignment(.center)
-        .font(.title2)
+        .font(.body)
         .foregroundColor(.primary)
         .padding(.horizontal, 50)
-    }
-}
-
-struct PANASView_Previews: PreviewProvider {
-    static var previews: some View {
-        PANASView(audioStimuli: .ncPlusMusicPlusAugmentation)
     }
 }

@@ -9,18 +9,12 @@ import Foundation
 import UIKit
 
 struct Questionnaire: Codable {
-//    var bq1 = BackgroundQuestions.q1
-//    var bq2 = BackgroundQuestions.q2
-//    var bq3 = BackgroundQuestions.q3
-//
+//    var id: Int
+
     var mood1: PanasQuestionnaire = PanasQuestionnaire(audioStimuli: .noiseCancellation)
     var mood2: PanasQuestionnaire = PanasQuestionnaire(audioStimuli: .ncPlusMusic)
     var mood3: PanasQuestionnaire = PanasQuestionnaire(audioStimuli: .ncPlusAugmentation)
     var mood4: PanasQuestionnaire = PanasQuestionnaire(audioStimuli: .ncPlusMusicPlusAugmentation)
-//
-//    var cq1 = ConcludingQuestions.q1
-//    var cq2 = ConcludingQuestions.q2
-//    var cq3 = ConcludingQuestions.q3
     
     var bq1Answer: BQ1Answer?
     var bq2Answer: BQ2Answer?
@@ -29,6 +23,18 @@ struct Questionnaire: Codable {
     var cq1Answer: ScaledResponse?
     var cq2Answer: CQ2Answer?
     var cq3Answer: String = ""
+    
+    init() { }
+    
+    init(json: Data) throws {
+        print("Decoding from JSON")
+        self = try JSONDecoder().decode(Questionnaire.self, from: json)
+    }
+    
+    func json() throws -> Data {
+        print("Encoding to JSON")
+        return try JSONEncoder().encode(self)
+    }
 }
 
 enum BackgroundQuestions: String, CaseIterable, Codable {
