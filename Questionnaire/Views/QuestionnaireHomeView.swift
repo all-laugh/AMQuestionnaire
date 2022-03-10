@@ -11,63 +11,61 @@ struct QuestionnaireHomeView: View {
     @ObservedObject var questionnaireVC: QuestionnaireViewController
     
     var body: some View {
-        List {
-            Text("Questionnaire")
-            .font(.largeTitle)
-            .bold()
-            .padding()
-            .horizontalCentered()
-            
-            Section {
-                NavigationLink(destination: BackgroundQuestionsView()
-                                .environmentObject(questionnaireVC)) {
-                    Text("Background")
-                        .horizontalCentered()
-                }
+        NavigationView {
+            List {
+                Text("Questionnaire")
+                .font(.largeTitle)
+                .bold()
                 .padding()
+                .horizontalCentered()
                 
-                NavigationLink(destination: PANASView(audioStimuli: .noiseCancellation)
-                                .environmentObject(questionnaireVC)) {
-                    Text("Mood Assessment 1")
-                        .horizontalCentered()
-                }
-                .padding()
+//                Section {
+                    NavigationLink(destination: BackgroundQuestionsView()) {
+                        Text("Background")
+                            .horizontalCentered()
+                    }
+                    .padding()
+                    
+                    NavigationLink(destination: PANASView(audioStimuli: .noiseCancellation)) {
+                        Text("Mood Assessment 1")
+                            .horizontalCentered()
+                    }
+                    .padding()
+                    
+                    NavigationLink(destination: PANASView(audioStimuli: .ncPlusMusic)) {
+                        Text("Mood Assessment 2")
+                            .horizontalCentered()
+                    }
+                    .padding()
+                    
+                    NavigationLink(destination: PANASView(audioStimuli: .ncPlusAugmentation)) {
+                        Text("Mood Assessment 3")
+                            .horizontalCentered()
+                    }
+                    .padding()
+                    
+                    NavigationLink(destination: PANASView(audioStimuli: .ncPlusMusicPlusAugmentation)) {
+                        Text("Mood Assessment 4")
+                            .horizontalCentered()
+                    }
+                    .padding()
+                    
+                    NavigationLink(destination: ConcludingQuestionsView()) {
+                        Text("Concluding Questions")
+                            .horizontalCentered()
+                    }
+                    .padding()
+//                }
                 
-                NavigationLink(destination: PANASView(audioStimuli: .ncPlusMusic)
-                                .environmentObject(questionnaireVC)) {
-                    Text("Mood Assessment 2")
-                        .horizontalCentered()
-                }
-                .padding()
-                
-                NavigationLink(destination: PANASView(audioStimuli: .ncPlusAugmentation)
-                                .environmentObject(questionnaireVC)) {
-                    Text("Mood Assessment 3")
-                        .horizontalCentered()
-                }
-                .padding()
-                
-                NavigationLink(destination: PANASView(audioStimuli: .ncPlusMusicPlusAugmentation)
-                                .environmentObject(questionnaireVC)) {
-                    Text("Mood Assessment 4")
-                        .horizontalCentered()
-                }
-                .padding()
-                
-                NavigationLink(destination: ConcludingQuestionsView()
-                                .environmentObject(questionnaireVC)) {
-                    Text("Concluding Questions")
-                        .horizontalCentered()
-                }
-                .padding()
+                Spacer()
             }
-
-            
-            Spacer()
+            .listStyle(.sidebar)
+            .foregroundColor(.primary)
+            .font(.largeTitle)
+         
         }
-        .listStyle(.sidebar)
-        .foregroundColor(.primary)
-        .font(.largeTitle)
+        .environmentObject(questionnaireVC)
         .navigationViewStyle(.stack)
+        
     }
 }

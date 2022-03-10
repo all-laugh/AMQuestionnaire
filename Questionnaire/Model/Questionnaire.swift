@@ -21,20 +21,21 @@ struct Questionnaire: Codable {
     var bq3Answer: BQ3Answer?
     
     var cq1Answer: ScaledResponse?
-    var cq2Answer: CQ2Answer?
-    var cq3Answer: String = ""
+    var cq2Answer: YesNoQuestion?
+    var cq3Answer: YesNoQuestion?
+    var cq4Answer: String = ""
     
-    init() { }
+    func json() throws -> Data {
+        print("Encoding to JSON")
+        return try JSONEncoder().encode(self)
+    }
     
     init(json: Data) throws {
         print("Decoding from JSON")
         self = try JSONDecoder().decode(Questionnaire.self, from: json)
     }
     
-    func json() throws -> Data {
-        print("Encoding to JSON")
-        return try JSONEncoder().encode(self)
-    }
+    init() { }
 }
 
 enum BackgroundQuestions: String, CaseIterable, Codable {
@@ -68,10 +69,11 @@ enum BQ3Answer: String, CaseIterable, Codable {
 enum ConcludingQuestions: String, CaseIterable, Codable {
     case q1 = "In you most frequent usecase of noise-cancellation headphones, how likely are you willing to try the augmentation effects you’ve heard today?"
     case q2 = "Does the augmentation effects make you feel more immersed with the content?"
-    case q3 = "Do you have any suggestions on how the augmentations you've head today could be better?"
+    case q3 = "Does the augmentation effects make you feel more immersed with your environment?"
+    case q4 = "Do you have any suggestions on how the augmentations you've heard today could be better?"
 }
 
-enum CQ2Answer: String, CaseIterable, Codable {
+enum YesNoQuestion: String, CaseIterable, Codable {
     case yes = "Yes"
     case no = "No"
 }

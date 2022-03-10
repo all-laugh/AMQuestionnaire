@@ -28,7 +28,8 @@ class QuestionnaireViewController: ReferenceFileDocument {
     }
     
     func snapshot(contentType: UTType) throws -> Data {
-        try questionnaireModel.json()
+        print("Triggered Encoding!")
+        return try questionnaireModel.json()
     }
     
     func fileWrapper(snapshot: Data, configuration: WriteConfiguration) throws -> FileWrapper {
@@ -69,15 +70,21 @@ class QuestionnaireViewController: ReferenceFileDocument {
         }
     }
     
-    func answerCQ2(with answer: CQ2Answer, undoManager: UndoManager?) {
+    func answerCQ2(with answer: YesNoQuestion, undoManager: UndoManager?) {
         undoablyPerform(operation: "Answer CQ2", with: undoManager) {
             questionnaireModel.cq2Answer = answer
         }
     }
     
-    func answerCQ3(with answer: String, undoManager: UndoManager?) {
+    func answerCQ3(with answer: YesNoQuestion, undoManager: UndoManager?) {
         undoablyPerform(operation: "Answer CQ3", with: undoManager) {
             questionnaireModel.cq3Answer = answer
+        }
+    }
+    
+    func answerCQ4(with answer: String, undoManager: UndoManager?) {
+        undoablyPerform(operation: "Answer CQ4", with: undoManager) {
+            questionnaireModel.cq4Answer = answer
         }
     }
     
@@ -239,8 +246,8 @@ class QuestionnaireViewController: ReferenceFileDocument {
     private func undoablyPerform(operation: String, with undoManager: UndoManager? = nil, doit: () -> Void) {
         let prevState = questionnaireModel
         doit()
-        print("Undoably Performed \(operation)")
-        print("UndoManager == nil?:  \(undoManager == nil)")
+//        print("Undoably Performed \(operation)")
+//        print("UndoManager == nil?:  \(undoManager == nil)")
         undoManager?.registerUndo(withTarget: self) { myself in
             myself.undoablyPerform(operation: operation, with: undoManager) {
                 myself.questionnaireModel = prevState

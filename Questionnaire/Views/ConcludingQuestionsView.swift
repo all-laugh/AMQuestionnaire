@@ -11,6 +11,7 @@ struct ConcludingQuestionsView: View {
     
     @EnvironmentObject var questionnaireVC: QuestionnaireViewController
     @Environment(\.undoManager) var undoManager
+    @State var cq4Answer: String = ""
     
     var body: some View {
         ScrollView {
@@ -57,7 +58,7 @@ struct ConcludingQuestionsView: View {
                     .font(.headline)
                     .padding()
                 
-                ForEach(CQ2Answer.allCases, id: \.self) { answer in
+                ForEach(YesNoQuestion.allCases, id: \.self) { answer in
                     
                     HStack {
                         Button(action: {
@@ -92,15 +93,58 @@ struct ConcludingQuestionsView: View {
                 Text(ConcludingQuestions.q3.rawValue)
                     .font(.headline)
                     .padding()
+                
+                ForEach(YesNoQuestion.allCases, id: \.self) { answer in
+                    
+                    HStack {
+                        Button(action: {
+                            questionnaireVC.answerCQ3(with: answer, undoManager: undoManager)
+                        }) {
+                            HStack {
+                                Text(answer.rawValue)
+                                Spacer()
+                            }
+                        }
+                        
+                        Spacer()
+                        
+                        Image(systemName: "checkmark.circle.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .padding(.horizontal, 20)
+                            .opacity(answer == questionnaireVC.questionnaireModel.cq3Answer ? 1 : 0)
+                        
+                        
+                    }
+                    .padding(.vertical, 5)
+                    
+                    Divider()
+                }
+                .foregroundColor(.primary)
+                .padding(.horizontal, 30)
+            }
             
-                TextEditor(text: $questionnaireVC.questionnaireModel.cq3Answer)
+            // MARK: - CQ3
+            VStack (alignment: .leading) {
+                Text(ConcludingQuestions.q4.rawValue)
+                    .font(.headline)
+                    .padding()
+            
+                TextEditor(text: $cq4Answer)
                     .frame(minHeight: 200)
                     .shadow(radius: 1)
                     .padding()
+                    .onChange(of: cq4Answer) { newValue in
+                        questionnaireVC.answerCQ4(with: newValue, undoManager: undoManager)
+                    }
             }
         }
         .foregroundColor(.primary)
         .padding()
         .padding(.horizontal, 40)
+        .onAppear {
+            cq4Answer = questionnaireVC.questionnaireModel.cq4Answer
+        }
     }
+        
 }

@@ -12,8 +12,9 @@ struct QuestionnaireApp: App {
     
     var body: some Scene {
         DocumentGroup (newDocument: { QuestionnaireViewController() }) { config in
-            let questionnaireVC = config.document
             QuestionnaireHomeView(questionnaireVC: config.document)
         }
+        
     }
+        
 }
